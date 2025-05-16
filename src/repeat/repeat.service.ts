@@ -38,7 +38,7 @@ export class RepeatService {
 
   async processRepeats() {
     const now = new Date();
-
+    console.log("ProcessRepeats running...")
     // 1. Update TASK GROUPS
     const groups = await this.taskGroupRepo.find({
       where: { repeat: { type: Not(RepeatType.NEVER) } },

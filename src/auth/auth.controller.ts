@@ -3,7 +3,6 @@ import { AuthService } from './auth.service';
 import { SignupDto } from './dto/signup.dto';
 import { LoginDto } from './dto/login.dto';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { GetUser } from './decorators/get-user.decorator';
 import { User } from 'src/users/user.entity';
 import { UsersService } from 'src/users/users.service';
 
