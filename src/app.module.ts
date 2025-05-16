@@ -6,6 +6,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/user.entity';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { TaskGroupsController } from './task-groups/task-groups.controller';
+import { TaskGroupsModule } from './task-groups/task-groups.module';
+import { TaskGroup } from './task-groups/task-group.entity';
+import { TasksModule } from './tasks/tasks.module';
+import { Task } from './tasks/task.entity';
+import { RepeatModule } from './repeat/repeat.module';
+import { Repeat } from './repeat/repeat.entity';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -17,13 +25,17 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [User],
+      entities: [User, TaskGroup, Task, Repeat],
       synchronize: true,
     }),
+    ScheduleModule.forRoot(),
     UsersModule,
-    AuthModule
+    AuthModule,
+    TaskGroupsModule,
+    TasksModule,
+    RepeatModule
   ],
-  controllers: [AppController],
+  controllers: [AppController, TaskGroupsController],
   providers: [AppService],
 })
 export class AppModule {}
